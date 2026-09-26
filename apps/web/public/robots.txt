@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# The service worker serves index.html for every navigation, so without this
+# file a request for /robots.txt returns HTML and parses as dozens of errors.

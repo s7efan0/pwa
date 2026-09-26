@@ -1,0 +1,190 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --color-live: var(--live);
+    --color-live-foreground: var(--live-foreground);
+    --color-warning: var(--warning);
+    --color-warning-foreground: var(--warning-foreground);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+ * Every contrast pair below was computed, not eyeballed. Ratios in comments
+ * are against that mode's surface. Interactive surfaces (--primary) target
+ * >=4.5:1 with their foreground text; chart marks (--chart-*) target >=3:1
+ * against the page surface, which is why --primary and --chart-1 differ
+ * slightly in light mode.
+ */
+:root {
+    color-scheme: light;
+
+    --background: #fafafa;
+    --foreground: #0a0a0a;
+    --card: #ffffff;
+    --card-foreground: #0a0a0a;
+    --popover: #ffffff;
+    --popover-foreground: #0a0a0a;
+
+    --primary: #2168c4;            /* white text 5.47:1 */
+    --primary-foreground: #ffffff;
+    --secondary: #f4f4f5;
+    --secondary-foreground: #0a0a0a;
+    --muted: #f4f4f5;
+    --muted-foreground: #5c5c5c;   /* 6.69:1 on white */
+    --accent: #eff6ff;
+    --accent-foreground: #1d5fb5;
+    --destructive: #c02626;        /* 5.92:1 on white */
+
+    --live: #15803d;               /* white text 5.02:1 */
+    --live-foreground: #ffffff;
+    --warning: #fef3c7;
+    --warning-foreground: #78350f; /* 8.15:1 on --warning */
+
+    --border: #e4e4e7;
+    --input: #e4e4e7;
+    --ring: #2168c4;
+
+    /* Validated categorical hues. Charts here are single-series, so only
+       chart-1 is in use; the rest are seated for future multi-series work. */
+    --chart-1: #2a78d6;            /* 4.42:1 on white */
+    --chart-2: #eb6834;
+    --chart-3: #1baf7a;
+    --chart-4: #eda100;
+    --chart-5: #e87ba4;
+
+    --radius: 0.625rem;
+
+    --sidebar: #fafafa;
+    --sidebar-foreground: #0a0a0a;
+    --sidebar-primary: #2168c4;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #f4f4f5;
+    --sidebar-accent-foreground: #0a0a0a;
+    --sidebar-border: #e4e4e7;
+    --sidebar-ring: #2168c4;
+}
+
+.dark {
+    color-scheme: dark;
+
+    --background: #0a0a0a;
+    --foreground: #fafafa;
+    --card: #141414;
+    --card-foreground: #fafafa;
+    --popover: #141414;
+    --popover-foreground: #fafafa;
+
+    --primary: #3987e5;            /* #0a0a0a text 5.44:1 */
+    --primary-foreground: #0a0a0a;
+    --secondary: #1f1f1f;
+    --secondary-foreground: #fafafa;
+    --muted: #1f1f1f;
+    --muted-foreground: #a1a1a1;   /* 7.66:1 on #0a0a0a */
+    --accent: #16233a;
+    --accent-foreground: #93bbf0;
+    --destructive: #f87171;        /* 7.16:1 on #0a0a0a */
+
+    --live: #22c55e;               /* #0a0a0a text 8.69:1 */
+    --live-foreground: #0a0a0a;
+    --warning: #451a03;
+    --warning-foreground: #fde68a; /* 12.03:1 on --warning */
+
+    --border: #262626;
+    --input: #2e2e2e;
+    --ring: #3987e5;
+
+    /* Same eight hues, stepped for the dark surface — not an automatic flip. */
+    --chart-1: #3987e5;            /* 5.44:1 on #0a0a0a */
+    --chart-2: #d95926;
+    --chart-3: #199e70;
+    --chart-4: #c98500;
+    --chart-5: #d55181;
+
+    --sidebar: #0a0a0a;
+    --sidebar-foreground: #fafafa;
+    --sidebar-primary: #3987e5;
+    --sidebar-primary-foreground: #0a0a0a;
+    --sidebar-accent: #1f1f1f;
+    --sidebar-accent-foreground: #fafafa;
+    --sidebar-border: #262626;
+    --sidebar-ring: #3987e5;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    /* Paint the theme surface on <html> too, so iOS rubber-band overscroll
+       shows the app colour instead of a white band. */
+    background-color: var(--background);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Tabular figures everywhere: scores, clocks and league tables must not
+       jitter as digits change. */
+    font-variant-numeric: tabular-nums;
+  }
+  /* Respect users who ask for less motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility pad-safe-t {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+@utility pad-safe-b {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

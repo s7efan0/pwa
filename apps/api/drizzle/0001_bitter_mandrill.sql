@@ -1,0 +1,1 @@
+ALTER TABLE "matches" ADD COLUMN "is_replay" boolean DEFAULT false NOT NULL;

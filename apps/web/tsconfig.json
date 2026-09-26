@@ -1,0 +1,13 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    // Solution-style config: tsc ignores this, but the shadcn CLI reads
+    // tsconfig.json (not tsconfig.app.json) to resolve its "@/..." aliases.
+    // Without it, `shadcn add` writes into a literal "@" directory.
+    "paths": { "@/*": ["./src/*"] }
+  }
+}

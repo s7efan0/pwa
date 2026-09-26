@@ -1,0 +1,21 @@
+services:
+  pwa_postgres_db:
+    image: postgres:18.1-alpine
+    container_name: pwa_app_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: pwa_app
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d pwa_app"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:

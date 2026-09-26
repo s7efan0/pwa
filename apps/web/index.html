@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- viewport-fit=cover is required or env(safe-area-inset-*) resolves to 0
+         in standalone mode and content sits under the notch / home indicator. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <title>Live Football Scores</title>
+    <meta
+      name="description"
+      content="Live football scores, fixtures, match events and league statistics."
+    />
+
+    <!-- iOS reads this meta to tint the status bar in a standalone web app;
+         the manifest's theme_color is ignored there. Kept in sync by the
+         inline script below and by applyTheme() at runtime. -->
+    <meta name="theme-color" content="#fafafa" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Scores" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <script>
+      // Runs synchronously before first paint. Without this the app renders
+      // one frame in the wrong theme on every load.
+      (function () {
+        try {
+          var stored = localStorage.getItem("livescore-theme");
+          var theme = stored === "light" || stored === "dark" ? stored : null;
+          var dark =
+            theme === "dark" ||
+            (theme === null &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", dark);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", dark ? "#0a0a0a" : "#fafafa");
+        } catch (e) {
+          /* private mode: fall through to the light default */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

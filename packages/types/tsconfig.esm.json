@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // Vite/the browser need real ESM named exports. The CJS build in
+    // tsconfig.json stays, because Nest consumes this package with require().
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "outDir": "dist/esm"
+  }
+}

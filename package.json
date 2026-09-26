@@ -1,0 +1,31 @@
+{
+  "name": "pwa",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "dev:types": "pnpm --filter @livescore/types run build:watch",
+    "dev:api": "pnpm --filter @livescore/api start:dev",
+    "dev:web": "pnpm --filter @livescore/web run dev",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v && docker compose up -d",
+    "dev": "pnpm --parallel --filter \"./apps/*\" dev",
+    "certs": "./scripts/make-lan-cert.sh",
+    "dev:lan": "LAN=1 pnpm --parallel --filter \"./apps/*\" dev",
+    "preview:lan": "LAN=1 pnpm --filter @livescore/web preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@11.20.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.20.0",
+      "onFail": "download"
+    }
+  }
+}
